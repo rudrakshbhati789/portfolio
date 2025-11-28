@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radha Rani Parlour & Stretching Studio</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body { font-family: "Poppins", sans-serif; margin:0; background:#fff4fa; color:#333; }
+header { padding:80px 20px; text-align:center; background:linear-gradient(45deg,#ff5fad,#ff9ed4); color:white;}
+header h1 { font-size:40px; margin:0; font-weight:700; }
+header p { font-size:18px; margin-top:10px; }
+.btn-main { margin-top:25px; background:white; color:#ff4fa3; padding:12px 30px; border-radius:30px; font-weight:600; text-decoration:none; display:inline-block; transition:0.4s;}
+.btn-main:hover { transform:scale(1.1); background:#ffe1f1; }
+
+nav { display:flex; justify-content:center; gap:25px; background:#ffe2ef; padding:15px; position:sticky; top:0; }
+nav a { font-weight:600; color:#d6007f; text-decoration:none; transition:0.3s;}
+nav a:hover { color:#ff259f; transform:scale(1.1); }
+
+section { padding:50px 20px; text-align:center; }
+h2 { font-size:32px; color:#d6007f; margin-bottom:20px; }
+
+.service-box { background:#fff; padding:20px; margin:15px auto; max-width:650px; border-radius:15px; box-shadow:0 0 10px #ffd2ea; transition:0.4s; text-align:left; cursor:pointer;}
+.service-box:hover { transform:translateY(-5px); box-shadow:0 0 20px #ffadd6; }
+.service-box h3 { margin:0 0 8px 0; color:#d6007f; }
+.service { color: black; text-decoration: none; }
+
+form { max-width:520px; margin:auto; background:#ffffff; padding:25px; border-radius:15px; box-shadow:0 0 10px #ffc6e5; text-align:left; }
+input, select, textarea, button { width:100%; margin-bottom:15px; padding:12px; border-radius:10px; border:1px solid #ff9ecf; outline:none; transition:0.3s; font-size:15px; }
+button { background:linear-gradient(45deg,#ff4fa3,#ff7dc9); color:white; border:none; border-radius:25px; font-size:18px; cursor:pointer; }
+button:hover { transform:scale(1.05); }
+
+/* Gallery Styles */
+#gallery .gallery-container { display:flex; flex-wrap:wrap; justify-content:center; }
+#gallery .gallery-item { width:250px; margin:10px; position:relative; overflow:hidden; border-radius:15px; cursor:pointer; }
+#gallery .gallery-item img { width:100%; height:180px; object-fit:cover; transition:0.4s; display:block; }
+#gallery .gallery-item:hover img { transform:scale(1.1); filter:brightness(0.7); }
+#gallery .gallery-item .caption { position:absolute; bottom:0; left:0; width:100%; padding:10px; color:white; background:rgba(214,0,127,0.7); text-align:center; font-weight:600; opacity:0; transition:0.4s; }
+#gallery .gallery-item:hover .caption { opacity:1; }
+
+#lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:9999; }
+#lightbox img { max-width:90%; max-height:80%; border-radius:15px; box-shadow:0 0 20px #fff; }
+#lightbox span { position:absolute; top:20px; right:30px; font-size:40px; color:white; cursor:pointer; }
+
+@media(max-width:600px){ #gallery .gallery-item { width:45%; } }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Radha Rani Parlour & Stretching Studio</h1>
+  <p>Sundarta • Wellness • Flexibility • Pain Relief</p>
+  <a href="#contact" class="btn-main">Book Appointment</a>
+</header>
+
+<nav>
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="services">
+  <h2>Hamari Services</h2>
+  <a class="service" href="/Frontend/hair.html"><div class="service-box"><h3>💇 Hair Services</h3><p>Haircut • Smoothening • Hair Spa • Coloring</p></div></a>
+  <a class="service" href="/Frontend/makeup.html"><div class="service-box"><h3>💄 Makeup Services</h3><p>Facial • Party Makeup • Bridal Makeup</p></div></a>
+  <a class="service" href="/Frontend/body.html"><div class="service-box"><h3>🧵 Body Care</h3><p>Waxing • Manicure • Pedicure</p></div></a>
+  <a class="service" href="/Frontend/massage.html"><div class="service-box"><h3>💆 Massage Therapy</h3><p>Head Massage • Full Body Massage</p></div></a>
+  <a class="service" href="/Frontend/hair.html"><div class="service-box"><h3>💇 Facial Services</h3><p>•Hydra Facial •Facial</p></div></a>
+  <a class="service" href="/Frontend/hair.html"><div class="service-box"><h3>🧵 Waxing,Threading</h3><p>•Oil wax •Cream Wax</p></div></a>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>Radha Rani Parlour & Stretching Studio me aapko beauty, relaxation aur pain relief sab kuch ek hi jagah milta hai.</p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2>Our Gallery</h2>
+  <div class="gallery-container">
+    <div class="gallery-item">
+      <img src="images/gallery1.jpg" alt="Haircut" onclick="openLightbox(this.src)">
+      <div class="caption">Haircut Styling</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery2.jpg" alt="Bridal Makeup" onclick="openLightbox(this.src)">
+      <div class="caption">Bridal Makeup</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery3.jpg" alt="Manicure" onclick="openLightbox(this.src)">
+      <div class="caption">Manicure & Pedicure</div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery4.jpg" alt="Massage" onclick="openLightbox(this.src)">
+      <div class="caption">Massage Therapy</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Appointment Book Kare</h2>
+  <form id="bookingForm">
+    <input id="name" placeholder="Aapka Naam" required>
+    <input id="phone" placeholder="Phone Number" required>
+    <select id="serviceSelect" required>
+      <option disabled selected>Service Select Kare</option>
+    </select>
+    <label>Select Date:</label>
+    <input type="date" id="dateInput" required>
+    <label>Select Time Slot:</label>
+    <select id="timeSelect" required>
+      <option disabled selected>Time Slot Choose Kare</option>
+    </select>
+    <textarea id="message" rows="4" placeholder="Koi Message..."></textarea>
+    <button type="submit">Submit Booking</button>
+  </form>
+</section>
+
+<div id="lightbox">
+  <span onclick="closeLightbox()">&times;</span>
+  <img id="lightboxImg" src="">
+</div>
+
+<script>
+// Elements
+const serviceSelect = document.getElementById("serviceSelect");
+const timeSelect    = document.getElementById("timeSelect");
+
+// Load Services from Backend
+async function loadServices(){
+  const res = await fetch("/api/slots");
+  const data = await res.json();
+
+  serviceSelect.innerHTML = "<option disabled selected>Service Select Kare</option>";
+  for (let service in data){
+    serviceSelect.innerHTML += `<option value="${service}">${service}</option>`;
+  }
+}
+
+// Load slots for selected service
+async function loadSlots(service){
+  const res = await fetch("/api/slots");
+  const allSlots = await res.json();
+
+  timeSelect.innerHTML = "<option disabled selected>Time Slot Choose Kare</option>";
+
+  if (allSlots[service]){
+    allSlots[service].forEach(t => {
+      timeSelect.innerHTML += `<option>${t}</option>`;
+    });
+  }
+}
+
+serviceSelect.addEventListener("change", () => {
+  loadSlots(serviceSelect.value);
+});
+
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const booking = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    service: serviceSelect.value,
+    date: document.getElementById("dateInput").value,
+    time: timeSelect.value,
+    message: document.getElementById("message").value,
+    created: new Date().toLocaleString()
+  };
+
+  await fetch("/api/bookings", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify(booking)
+  });
+
+  alert("Booking Successfully Saved!");
+  const number="9993658088";
+  const msg=`⭐ NEW APPOINTMENT ⭐%0A%0A👤 Name: ${booking.name}%0A📞 Phone: ${booking.phone}%0A💅 Service: ${booking.service}%0A📅 Date: ${booking.date}%0A⏰ Time: ${booking.time}%0A📝 Message: ${booking.message}`;
+  window.open("https://wa.me/"+number+"?text="+msg, "_blank");
+
+  document.getElementById("bookingForm").reset();
+  timeSelect.innerHTML = "<option disabled selected>Time Slot Choose Kare</option>";
+});
+
+loadServices();
+
+// Lightbox functions
+function openLightbox(src){ document.getElementById("lightbox").style.display="flex"; document.getElementById("lightboxImg").src=src; }
+function closeLightbox(){ document.getElementById("lightbox").style.display="none"; }
+</script>
+
+</body>
+</html>

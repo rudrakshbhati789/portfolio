@@ -1,0 +1,17 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "12345"
+  },
+  "bookings": [],
+  "slots": {
+    "Haircut": ["10:00 AM","11:00 AM","01:00 PM","03:00 PM"],
+    "Facial": ["10:30 AM","12:00 PM","02:00 PM"],
+    "Makeup": ["11:00 AM","01:00 PM"],
+    "Waxing": ["10:00 AM","12:00 PM","02:00 PM"],
+    "Threading": ["10:00 AM","11:30 AM"],
+    "Bridal Makeup": ["10:00 AM","12:00 PM","02:00 PM"],
+    "Stretching Therapy": ["09:00 AM","11:00 AM","01:00 PM"],
+    "Pain Relief Session": ["10:00 AM","12:00 PM","02:00 PM"]
+  }
+}

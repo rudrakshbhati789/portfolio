@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Radha Rani Parlour</title>
+<style>
+body { font-family: "Poppins", sans-serif; padding:20px; background:#fff0fa; color:#333; }
+h2 { color:#d6007f; }
+.card { background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px pink; margin-bottom:20px; }
+input, textarea, button { width:100%; margin-bottom:15px; padding:12px; border-radius:10px; border:1px solid #ff9ecf; font-size:15px; outline:none; transition:0.3s; }
+button { background:linear-gradient(45deg,#ff4fa3,#ff7dc9); color:white; border:none; border-radius:25px; font-size:18px; cursor:pointer; }
+button:hover { transform:scale(1.05); }
+#panel { display:none; }
+textarea { font-family: monospace; }
+#loginMessage { color:red; font-weight:bold; margin-bottom:15px; }
+</style>
+</head>
+<body>
+
+<h2>Admin Login</h2>
+
+<div class="card" id="loginCard">
+  <input id="username" placeholder="Username">
+  <input id="password" type="password" placeholder="Password">
+  <div id="loginMessage"></div>
+  <button onclick="login()">Login</button>
+</div>
+
+<div id="panel">
+  <h2>Bookings</h2>
+  <div id="bookings"></div>
+
+  <h2>Manage Slots</h2>
+  <div id="slotsContainer"></div>
+</div>
+
+<script>
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const loginMessage = document.getElementById("loginMessage");
+
+  // Send login request to backend
+  let res = await fetch("/api/admin-login", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({username, password})
+  });
+
+  let data = await res.json();
+
+  if(data.success){
+    loginMessage.style.color = "green";
+    loginMessage.textContent = "Login Successful!";
+    document.getElementById("panel").style.display="block";
+    document.getElementById("loginCard").style.display="none";
+    loadBookings();
+    loadSlots();
+  } else {
+    loginMessage.style.color = "red";
+    loginMessage.textContent = "Incorrect Username or Password!";
+  }
+}
+
+// Load Bookings
+async function loadBookings(){
+  let res = await fetch("/api/bookings");
+  let bookings = await res.json();
+  const bookingsDiv = document.getElementById("bookings");
+  bookingsDiv.innerHTML = "";
+  bookings.forEach(b => {
+    bookingsDiv.innerHTML += `
+      <div class="card">
+        <b>${b.name}</b> (${b.phone})<br>
+        Service: ${b.service}<br>
+        Date: ${b.date} - Time: ${b.time}<br>
+        Message: ${b.message}<br>
+        Created: ${b.created}
+      </div>
+    `;
+  });
+}
+
+// Load Slots
+async function loadSlots(){
+  let res = await fetch("/api/slots");
+  let slots = await res.json();
+  const container = document.getElementById("slotsContainer");
+  container.innerHTML = "";
+  for(let service in slots){
+    container.innerHTML += `
+      <div class="card">
+        <h3>${service}</h3>
+        <textarea id="slot-${service}" rows="3">${slots[service].join(", ")}</textarea>
+        <button onclick="updateSlot('${service}')">Save Slots</button>
+      </div>
+    `;
+  }
+}
+
+// Update Slots
+async function updateSlot(service){
+  const newSlots = document.getElementById("slot-" + service).value
+                    .split(",")
+                    .map(s => s.trim())
+                    .filter(s => s.length>0);
+  await fetch("/api/update-slots", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({service, slots:newSlots})
+  });
+  alert("Slots Updated for " + service);
+  loadSlots();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+body {
+    font-family: Poppins, sans-serif;
+    background: #fff0f6;
+    margin:0;
+    padding:0;
+}
+
+header {
+    text-align:center;
+    padding:20px;
+    background:#c2185b;
+    color:white;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+}
+
+nav {
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    background:#ffbdd4;
+    padding:12px;
+}
+
+nav a {
+    text-decoration:none;
+    font-weight:bold;
+    color:#c2185b;
+    padding:6px 14px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+nav a:hover {
+    background:#c2185b;
+    color:white;
+}
+
+.services, .contact-form {
+    padding:20px;
+}
+
+.card {
+    background:white;
+    padding:15px;
+    margin:10px;
+    border-radius:15px;
+    box-shadow:0 0 10px #e08bb3;
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:scale(1.03);
+}
+
+button {
+    padding:10px 22px;
+    background:#c2185b;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover {
+    background:#a2134c;
+}
+
+input {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #c2185b;
+}
