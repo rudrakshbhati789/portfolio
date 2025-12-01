@@ -67,11 +67,12 @@ button:hover { transform:scale(1.05); }
 <section id="services">
   <h2>Hamari Services</h2>
   <a class="service" href="/Frontend/hair.html"><div class="service-box"><h3>💇 Hair Services</h3><p>Haircut • Smoothening • Hair Spa • Coloring</p></div></a>
-  <a class="service" href="/Frontend/makeup.html"><div class="service-box"><h3>💄 Makeup Services</h3><p>Facial • Party Makeup • Bridal Makeup</p></div></a>
-  <a class="service" href="/Frontend/body.html"><div class="service-box"><h3>🧵 Body Care</h3><p>Waxing • Manicure • Pedicure</p></div></a>
+  <a class="service" href="/Frontend/makeup.html"><div class="service-box"><h3>💄 Makeup Services</h3><p> • Party Makeup • Bridal Makeup</p></div></a>
+  <a class="service" href="/Frontend/body.html"><div class="service-box"><h3>🧵 Body Care</h3><p> •Massage • Manicure • Pedicure</p></div></a>
   <a class="service" href="/Frontend/massage.html"><div class="service-box"><h3>💆 Massage Therapy</h3><p>Head Massage • Full Body Massage</p></div></a>
-  <a class="service" href="/Frontend/hair.html"><div class="service-box"><h3>💇 Facial Services</h3><p>•Hydra Facial •Facial</p></div></a>
-  <a class="service" href="/Frontend/hair.html"><div class="service-box"><h3>🧵 Waxing,Threading</h3><p>•Oil wax •Cream Wax</p></div></a>
+  <a class="service" href="/Frontend/facial.html"><div class="service-box"><h3>💇 Facial Services</h3><p>•Hydra Facial •Facial</p></div></a>
+  <a class="service" href="/Frontend/thread.html"><div class="service-box"><h3>🧵 Waxing,Threading</h3><p>•Oil wax •Cream Wax</p></div></a>
+   <a class="service" href="/Frontend/nail.html"><div class="service-box"><h3>💅 Nails Extension</h3><p>•Gel extension ,•Acrylic extension,poly gel extension</p></div></a>
 </section>
 
 <section id="about">
@@ -84,19 +85,19 @@ button:hover { transform:scale(1.05); }
   <h2>Our Gallery</h2>
   <div class="gallery-container">
     <div class="gallery-item">
-      <img src="images/gallery1.jpg" alt="Haircut" onclick="openLightbox(this.src)">
+      <img src="/Images/hair.jpeg" alt="Haircut" onclick="openLightbox(this.src)">
       <div class="caption">Haircut Styling</div>
     </div>
     <div class="gallery-item">
-      <img src="images/gallery2.jpg" alt="Bridal Makeup" onclick="openLightbox(this.src)">
+      <img src="/Images/bridal.jpeg" alt="Bridal Makeup" onclick="openLightbox(this.src)">
       <div class="caption">Bridal Makeup</div>
     </div>
     <div class="gallery-item">
-      <img src="images/gallery3.jpg" alt="Manicure" onclick="openLightbox(this.src)">
+      <img src="/Images/mn.jpg" alt="Manicure" onclick="openLightbox(this.src)">
       <div class="caption">Manicure & Pedicure</div>
     </div>
     <div class="gallery-item">
-      <img src="images/gallery4.jpg" alt="Massage" onclick="openLightbox(this.src)">
+      <img src="/Images/masages.jpg" alt="Massage" onclick="openLightbox(this.src)">
       <div class="caption">Massage Therapy</div>
     </div>
   </div>
@@ -107,15 +108,10 @@ button:hover { transform:scale(1.05); }
   <form id="bookingForm">
     <input id="name" placeholder="Aapka Naam" required>
     <input id="phone" placeholder="Phone Number" required>
-    <select id="serviceSelect" required>
-      <option disabled selected>Service Select Kare</option>
-    </select>
+   
     <label>Select Date:</label>
     <input type="date" id="dateInput" required>
-    <label>Select Time Slot:</label>
-    <select id="timeSelect" required>
-      <option disabled selected>Time Slot Choose Kare</option>
-    </select>
+   
     <textarea id="message" rows="4" placeholder="Koi Message..."></textarea>
     <button type="submit">Submit Booking</button>
   </form>
@@ -143,22 +139,23 @@ async function loadServices(){
 }
 
 // Load slots for selected service
-async function loadSlots(service){
-  const res = await fetch("/api/slots");
-  const allSlots = await res.json();
+async function loadSlots() {
+    const res = await fetch("/api/slots");
+    const slots = await res.json();
 
-  timeSelect.innerHTML = "<option disabled selected>Time Slot Choose Kare</option>";
+    const select = document.getElementById("slotSelect");
+    select.innerHTML = "";
 
-  if (allSlots[service]){
-    allSlots[service].forEach(t => {
-      timeSelect.innerHTML += `<option>${t}</option>`;
+    slots.forEach(s => {
+        const option = document.createElement("option");
+        option.value = s.time;
+        option.textContent = s.time;
+        select.appendChild(option);
     });
-  }
 }
 
-serviceSelect.addEventListener("change", () => {
-  loadSlots(serviceSelect.value);
-});
+loadSlots();
+
 
 document.getElementById("bookingForm").addEventListener("submit", async function(e){
   e.preventDefault();

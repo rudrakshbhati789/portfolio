@@ -4,9 +4,11 @@
   "main": "server.js",
   "type": "commonjs",
   "dependencies": {
-    "body-parser": "^1.20.2",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "mongoose": "^9.0.0"
   },
   "description": "",
   "scripts": {
@@ -15,5 +17,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudrakshbhati789/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rudrakshbhati789/portfolio/issues"
+  },
+  "homepage": "https://github.com/rudrakshbhati789/portfolio#readme"
 }
