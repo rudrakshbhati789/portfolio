@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Radha Rani Parlour</title>
+<style>
+  body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    background:#fff4fa;
+  }
+  header{
+    background:#ff5fad;
+    padding:20px;
+    text-align:center;
+    color:white;
+    font-size:24px;
+    font-weight:600;
+    position:relative;
+  }
+  .view-cart-btn {
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:#fff;
+    color:#ff4fa3;
+    padding:10px 15px;
+    border-radius:25px;
+    font-weight:600;
+    text-decoration:none;
+    transition:0.3s;
+  }
+  .view-cart-btn:hover { background:#ffe1f1; }
+  .container{
+    max-width:500px;
+    margin:auto;
+    background:white;
+    margin-top:30px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  }
+  h2{
+    color:#d6007f;
+    text-align:center;
+  }
+  .item{
+    padding:10px 0;
+    border-bottom:1px solid #ffe2ef;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:16px;
+  }
+  .total{
+    text-align:right;
+    margin-top:15px;
+    font-size:18px;
+    font-weight:700;
+    color:#ff4fa3;
+  }
+  input{
+    width:100%; padding:12px; border:1px solid #ccc; border-radius:10px; margin-bottom:10px;
+  }
+  button{
+    width:100%; padding:12px; border:none; border-radius:25px; background:#25d366; color:white; font-size:16px; font-weight:600; cursor:pointer;
+  }
+  button:hover{ background:#1bbd58; }
+  .remove-btn{
+    padding:5px 10px;
+    background:#ff4fa3;
+    color:white;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:14px;
+  }
+  .remove-btn:hover{ background:#d6007f; }
+</style>
+</head>
+<body>
+
+<header>
+  Your Cart
+  <a href="/cart.html" class="view-cart-btn">View Cart</a>
+</header>
+
+<a href="/index.html" style="display:block; text-align:center; margin-top:10px; color:#d6007f; font-weight:600; text-decoration:none;">← Back to Main</a>
+
+<div class="container">
+  <h2>Order Summary</h2>
+  <div id="cartList"></div>
+  <p class="total">Total: ₹<span id="totalPrice">0</span></p>
+
+  <h2>Fill Your Details</h2>
+  <input type="date" id="date">
+  <input type="time" id="time">
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="text" id="phone" placeholder="Phone Number">
+  <button id="confirmBtn" onclick="confirmBooking()">Confirm Booking</button>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function loadCart(){
+    const list = document.getElementById('cartList');
+    const totalBox = document.getElementById('totalPrice');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    let total = 0;
+    list.innerHTML = '';
+
+    if(cart.length === 0){
+      list.innerHTML = "<p style='text-align:center; color:#d6007f;'>Your cart is empty</p>";
+      confirmBtn.disabled = true;
+      confirmBtn.style.background = "#ccc";
+      return;
+    } else {
+      confirmBtn.disabled = false;
+      confirmBtn.style.background = "#25d366";
+    }
+
+    cart.forEach((item, index) => {
+      const name = item.name || "Unknown Item";
+      const qty = Number(item.qty) || 1;
+      const price = Number(item.price) || 0;
+
+      list.innerHTML += `
+        <div class='item'>
+          <span>${name} × ${qty}</span>
+          <span>₹${price * qty}</span>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </div>
+      `;
+
+      total += price * qty;
+    });
+
+    totalBox.innerText = total;
+  }
+
+  function removeItem(index){
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  function confirmBooking(){
+    if(cart.length === 0){
+      alert("Your cart is empty!");
+      return;
+    }
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+
+    if(!name || !phone || !date || !time){
+      alert('Please fill all details including date & time');
+      return;
+    }
+
+    let summary = "";
+    cart.forEach(item => {
+      const itemName = item.name || "Unknown Item";
+      const qty = Number(item.qty) || 1;
+      const price = Number(item.price) || 0;
+      summary += `${itemName} x ${qty} = ₹${price * qty}%0A`;
+    });
+
+    let total = document.getElementById('totalPrice').innerText;
+
+    const message = 
+`New Booking Request:%0A%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ATime: ${time}%0A%0AServices:%0A${summary}%0ATotal: ₹${total}%0A%0APlease confirm my appointment.`;
+
+    const salonNumber = "+919993658088";
+    window.open(`https://wa.me/91${salonNumber}?text=${message}`, "_blank");
+
+    alert("Booking Confirmed! We will contact you soon.");
+    localStorage.removeItem('cart');
+    loadCart();
+  }
+
+  loadCart();
+</script>
+
+</body>
+</html>

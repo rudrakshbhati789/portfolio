@@ -57,9 +57,9 @@
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0px 4px 10px #ffd7ea;
-    transition: 0.3s;
     text-align: center;
     border: 1px solid #ffe2f1;
+    transition: 0.3s;
   }
 
   .card:hover {
@@ -82,7 +82,6 @@
   .card p {
     font-size: 15px;
     color: #444;
-    margin-bottom: 8px;
   }
 
   .price {
@@ -92,20 +91,22 @@
     margin-bottom: 10px;
   }
 
-  .whatsapp-btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #25D366;
+  /* Add to Cart Button */
+  .cart-btn {
+    padding: 10px 16px;
+    background: #ff4fa3;
     color: white;
+    border: none;
     border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
     transition: 0.3s;
   }
 
-  .whatsapp-btn:hover {
+  .cart-btn:hover {
+    background: #e63e90;
     transform: scale(1.05);
-    background: #1ebe57;
   }
 
   footer {
@@ -131,20 +132,12 @@
 
   <div class="beauty-grid">
 
-    <!-- <div class="card">
-      <div class="icon">💄</div>
-      <h3>Facial</h3>
-      <p>Fresh aur glowing skin ke liye facial treatment.</p>
-      <p class="price">₹500</p>
-      <a class="whatsapp-btn" href="https://wa.me/9993658088?text=Hi!%20Main%20Facial%20book%20karna%20chahta/chahti%20hoon%20-₹500" target="_blank">Book on WhatsApp</a>
-    </div> -->
-
     <div class="card">
       <div class="icon">💋</div>
       <h3>Party Makeup</h3>
       <p>Stylish aur professional makeup — Party ready look.</p>
       <p class="price">₹1000</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Party%20Makeup%20book%20karna%20chahta/chahti%20hoon%20-₹800" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Party Makeup', 1000)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -152,23 +145,15 @@
       <h3>Bridal Makeup</h3>
       <p>Perfect bridal look — Long-lasting aur photogenic.</p>
       <p class="price">₹3000</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Bridal%20Makeup%20book%20karna%20chahta/chahti%20hoon%20-₹2500" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Bridal Makeup', 3000)">Add to Cart</button>
     </div>
-
-    <!-- <div class="card">
-      <div class="icon">🌸</div>
-      <h3>Clean Up</h3>
-      <p>Simple aur effective skin cleaning treatment.</p>
-      <p class="price">₹300</p>
-      <a class="whatsapp-btn" href="https://wa.me/9993658088?text=Hi!%20Main%20Clean%20Up%20book%20karna%20chahta/chahti%20hoon%20-₹300" target="_blank">Book on WhatsApp</a>
-    </div> -->
 
     <div class="card">
       <div class="icon">✨</div>
       <h3>Glow Treatment</h3>
       <p>Skin bright aur glowing — Special treatment.</p>
-      <p class="price">₹1500+</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Glow%20Treatment%20book%20karna%20chahta/chahti%20hoon%20-₹700" target="_blank">Book on WhatsApp</a>
+      <p class="price">₹1500</p>
+      <button class="cart-btn" onclick="addToCart('Glow Treatment', 1500)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -176,23 +161,29 @@
       <h3>Bridal Pre Makeup</h3>
       <p>Bridal trial makeup — Perfect for wedding day planning.</p>
       <p class="price">₹1500</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Bridal%20Pre%20Makeup%20book%20karna%20chahta/chahti%20hoon%20-₹1500" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Bridal Pre Makeup', 1500)">Add to Cart</button>
     </div>
 
-    <!-- <div class="card">
-      <div class="icon">💆‍♀️</div>
-      <h3>Threading & Waxing</h3>
-      <p>Clean aur smooth skin ke liye professional care.</p>
-      <p class="price">₹250+</p>
-      <a class="whatsapp-btn" href="https://wa.me/9993658088?text=Hi!%20Main%20Threading/Waxing%20book%20karna%20chahta/chahti%20hoon%20-₹250+" target="_blank">Book on WhatsApp</a>
-    </div>
-
-  </div> -->
+  </div>
 </div>
 
 <footer>
   © 2025 Radha Rani Parlour & Stretching Studio — Beauty & Makeup with Love 💗
 </footer>
+
+
+
+<script>
+function addToCart(serviceName, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push({ service: serviceName, price: price });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(serviceName + " added to cart!");
+}
+</script>
 
 </body>
 </html>

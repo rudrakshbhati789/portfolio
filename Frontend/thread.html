@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Body Care - Radha Rani Parlour</title>
+<title>Waxing & Threading - Radha Rani Parlour</title>
 
 <style>
   body {
@@ -92,20 +92,40 @@
     margin-bottom: 10px;
   }
 
-  .whatsapp-btn {
-    display: inline-block;
+  /* ADD TO CART BUTTON STYLE SAME AS BODY PAGE */
+  .cart-btn {
     padding: 10px 15px;
-    background: #25D366;
+    background: #ff4fa3;
     color: white;
+    border: none;
     border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
+    cursor: pointer;
+    font-weight: 600;
     transition: 0.3s;
   }
 
-  .whatsapp-btn:hover {
+  .cart-btn:hover {
+    background: #d6007f;
     transform: scale(1.05);
-    background: #1ebe57;
+  }
+
+  /* FLOATING CART BUTTON */
+  .floating-cart {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #ff4fa3;
+    color: white;
+    padding: 15px 22px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px #ffb3d6;
+    transition: 0.3s;
+  }
+
+  .floating-cart:hover {
+    transform: scale(1.1);
   }
 
   footer {
@@ -122,85 +142,88 @@
 <body>
 
 <header>
-  <h1>Waxing Threading</h1>
+  <h1>Waxing & Threading</h1>
   <p>Waxing • Threading</p>
 </header>
 
 <div class="container">
-  <h2 class="service-title">✨ Hamare Waxing and threading Services ✨</h2>
+  <h2 class="service-title">✨ Hamare Waxing & Threading Services ✨</h2>
 
   <div class="body-grid">
 
      <div class="card">
       <div class="icon">🧖‍♀️</div> 
       <h3>Oil Wax</h3>
-      <p>Soft & Silky with Oil Wax ✨</p>
       <p>Hand: ₹250</p>
-      <p>Half leg:₹250</p>
-      <p>Full leg:₹350</p>
-      <!-- <p class="price">₹300+</p> -->
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Waxing%20book%20karna%20chahta/chahti%20hoon%20-₹300+" target="_blank">Book on WhatsApp</a>
+      <p>Half Leg: ₹250</p>
+      <p>Full Leg: ₹350</p>
+      <button class="cart-btn" onclick="addToCart('Oil Wax', 250)">Add to Cart</button>
     </div>
 
     <div class="card">
       <div class="icon">🧖‍♀️</div>
       <h3>Cream Wax</h3>
       <p>Hand: ₹200</p>
-      <p>Half leg:₹150</p>
-      <p>Full leg:₹300</p>
-      <p>Smooth & Glowing with Cream Wax ✨</p>
-      <!-- <p class="price">₹150+</p> -->
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Threading%20book%20karna%20chahta/chahti%20hoon%20-₹150+" target="_blank">Book on WhatsApp</a>
+      <p>Half Leg: ₹150</p>
+      <p>Full Leg: ₹300</p>
+      <button class="cart-btn" onclick="addToCart('Cream Wax', 200)">Add to Cart</button>
     </div>
 
     <div class="card">
       <div class="icon">🧖‍♀️</div>
-      <h3>Normal wax</h3>
-      <p>Smooth skin, simple care ✨ Normal wax for that everyday glow💖</p>
+      <h3>Normal Wax</h3>
       <p>Hand: ₹100</p>
-      <p>Half leg:₹120</p>
-      <p>Full leg:₹250</p>
-      <!-- <p class="price">₹250</p> -->
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Manicure%20book%20karna%20chahta/chahti%20hoon%20-₹350" target="_blank">Book on WhatsApp</a>
+      <p>Half Leg: ₹120</p>
+      <p>Full Leg: ₹250</p>
+      <button class="cart-btn" onclick="addToCart('Normal Wax', 100)">Add to Cart</button>
     </div>
 
     <div class="card">
       <div class="icon">🧖‍♀️</div>
-      <h3>Eyebrow</h3>
-      <p>Brows that wow ✨.</p>
+      <h3>Eyebrow Threading</h3>
       <p class="price">₹20</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Pedicure%20book%20karna%20chahta/chahti%20hoon%20-₹400" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Eyebrow Threading', 20)">Add to Cart</button>
     </div>
 
     <div class="card">
       <div class="icon">💖</div>
-      <h3>Upper lips</h3>
-      <p>Gentle hair removal, flawless results.</p>
+      <h3>Upper Lips</h3>
       <p class="price">₹10</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Scrub%20book%20karna%20chahta/chahti%20hoon%20-₹500" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Upper Lips', 10)">Add to Cart</button>
     </div>
 
     <div class="card">
       <div class="icon">🌿</div>
-      <h3>Fore head</h3>
-      <p>Smooth forehead, flawless finish ✨.</p>
+      <h3>Forehead Threading</h3>
       <p class="price">₹10</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Massage%20book%20karna%20chahta/chahti%20hoon%20-₹700" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Forehead Threading', 10)">Add to Cart</button>
     </div>
+
     <div class="card">
       <div class="icon">🌿</div>
       <h3>Full Face Threading</h3>
-      <p>Full face threading = full glow-up💫.</p>
       <p class="price">₹60</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Massage%20book%20karna%20chahta/chahti%20hoon%20-₹700" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Full Face Threading', 60)">Add to Cart</button>
     </div>
 
   </div>
 </div>
 
+<!-- FLOATING CART BUTTON -->
+<a href="cart.html" class="floating-cart">🛒 View Cart</a>
+
 <footer>
   © 2025 Radha Rani Parlour & Stretching Studio — Body Care with Love 💗
 </footer>
+
+<script>
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to cart!");
+}
+</script>
 
 </body>
 </html>

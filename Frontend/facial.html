@@ -3,201 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Body Care - Radha Rani Parlour</title>
+<title>Facial - Radha Rani Parlour</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: #fff4fa;
-    color: #333;
-  }
+body {margin:0; font-family:"Poppins",sans-serif; background:#fff4fa; color:#333;}
+header {padding:60px 20px; text-align:center; background:linear-gradient(45deg,#ff5fad,#ff94c9); color:white; border-bottom-left-radius:40px; border-bottom-right-radius:40px;}
+header h1 {margin:0; font-size:36px; font-weight:700;}
+header p {margin-top:10px; font-size:18px; letter-spacing:0.5px;}
+.container {padding:40px 20px;}
+.service-title {text-align:center; font-size:28px; color:#d6007f; margin-bottom:25px; font-weight:700;}
+.body-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;}
+.card {background:white; padding:20px; border-radius:15px; box-shadow:0px 4px 10px #ffd7ea; transition:0.3s; text-align:center; border:1px solid #ffe2f1;}
+.card:hover {transform:translateY(-6px); box-shadow:0 6px 16px #ffb8da;}
+.icon {font-size:45px; margin-bottom:10px; color:#ff4fa3;}
+.card h3 {font-size:20px; color:#d6007f; margin-bottom:8px;}
+.card p {font-size:15px; color:#444; margin-bottom:8px;}
+.price {font-weight:700; color:#ff4fa3; font-size:16px; margin-bottom:10px;}
+.cart-btn {display:inline-block; padding:10px 15px; background:#ff4fa3; color:white; border-radius:25px; font-weight:bold; cursor:pointer; transition:0.3s;}
+.cart-btn:hover {transform:scale(1.05); background:#d6007f;}
+footer {text-align:center; margin-top:40px; padding:20px; background:#ffe2ef; border-top-left-radius:30px; border-top-right-radius:30px;}
 
-  header {
-    padding: 60px 20px;
-    text-align: center;
-    background: linear-gradient(45deg, #ff5fad, #ff94c9);
-    color: white;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-  }
+/* Cart Box */
+#cartBox {position:fixed; bottom:20px; right:20px; background:white; border-radius:15px; padding:20px; box-shadow:0px 4px 15px rgba(0,0,0,0.2); width:260px; display:none; z-index:999;}
+#cartBox h3 {margin-top:0; font-size:20px; color:#d6007f;}
+.cart-item {margin-bottom:10px; font-size:15px;}
+.checkout {margin-top:10px; width:100%; background:#25d366; padding:10px; border:none; border-radius:25px; color:white; font-weight:bold; cursor:pointer;}
 
-  header h1 {
-    margin: 0;
-    font-size: 36px;
-    font-weight: 700;
-  }
-
-  header p {
-    margin-top: 10px;
-    font-size: 18px;
-    letter-spacing: 0.5px;
-  }
-
-  .container {
-    padding: 40px 20px;
-  }
-
-  .service-title {
-    text-align: center;
-    font-size: 28px;
-    color: #d6007f;
-    margin-bottom: 25px;
-    font-weight: 700;
-  }
-
-  .body-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-  }
-
-  .card {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px #ffd7ea;
-    transition: 0.3s;
-    text-align: center;
-    border: 1px solid #ffe2f1;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 6px 16px #ffb8da;
-  }
-
-  .icon {
-    font-size: 45px;
-    margin-bottom: 10px;
-    color: #ff4fa3;
-  }
-
-  .card h3 {
-    font-size: 20px;
-    color: #d6007f;
-    margin-bottom: 8px;
-  }
-
-  .card p {
-    font-size: 15px;
-    color: #444;
-    margin-bottom: 8px;
-  }
-
-  .price {
-    font-weight: 700;
-    color: #ff4fa3;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  .whatsapp-btn {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #25D366;
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-
-  .whatsapp-btn:hover {
-    transform: scale(1.05);
-    background: #1ebe57;
-  }
-
-  footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    background: #ffe2ef;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-  }
+/* Cart Modal */
+#cartPage {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:1000; padding:40px;}
+#cartPage .modal-content {max-width:400px; margin:auto; background:white; padding:25px; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,0.2);}
+#cartPage input {width:100%; padding:10px; margin-top:8px; border:1px solid #ccc; border-radius:10px;}
+#cartPage button {width:100%; padding:12px; margin-top:10px; border:none; border-radius:25px; cursor:pointer;}
+#cartPage .confirm {background:#25d366; color:white; font-weight:bold;}
+#cartPage .close {background:#ff4f4f; color:white;}
 </style>
 </head>
-
 <body>
 
 <header>
-  <h1>Facial</h1>
-  <p>Facial Services</p>
+<h1>Facial</h1>
+<p>Facial Services</p>
 </header>
 
 <div class="container">
-  <h2 class="service-title">✨ Hamare Facial Services ✨</h2>
+<h2 class="service-title">✨ Hamare Facial Services ✨</h2>
 
-  <div class="body-grid">
-     <div class="card">
-      <div class="icon">🧖‍♀️</div>
-       <h3>Hydraa Facial</h3>
-      <p>Soft aur clean skin ke liye professional Facial service.</p>
-      <p class="price">₹999+</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Waxing%20book%20karna%20chahta/chahti%20hoon%20-₹300+" target="_blank">Book on WhatsApp</a>
-    </div>
-     <div class="card">
-      <div class="icon">🧖‍♀️</div>
-       <h3>Fruit Facial</h3>
-      <p>Soft aur clean skin ke liye professional Facial service.</p>
-      <p class="price">₹200+</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Waxing%20book%20karna%20chahta/chahti%20hoon%20-₹300+" target="_blank">Book on WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">🧖‍♀️</div>
-      <h3>Gold Facial</h3>
-      <p>✨ Gold Glow Facial – Chamakte Chehre ke liye.</p>
-      <p class="price">₹250+</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Threading%20book%20karna%20chahta/chahti%20hoon%20-₹150+" target="_blank">Book on WhatsApp</a>
-    </div> 
-
-    <div class="card">
-      <div class="icon">💎</div>
-      <h3>Diamond</h3>
-      <p>💎 Diamond Glow Facial – Sparkle Your Skin</p>
-      <p class="price">₹350</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Manicure%20book%20karna%20chahta/chahti%20hoon%20-₹350" target="_blank">Book on WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">🌸</div>
-      <h3>Skin Polishing</h3>
-      <p>🌸 Skin Polishing Facial – Smooth & Soft Skin.</p>
-      <p class="price">₹250</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Pedicure%20book%20karna%20chahta/chahti%20hoon%20-₹400" target="_blank">Book on WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">👰</div>
-      <h3>Bridal Glow</h3>
-      <p>👰 Bridal Glow Facial – Shaadi ke Liye Perfect</p>
-      <p class="price">₹600</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Scrub%20book%20karna%20chahta/chahti%20hoon%20-₹500" target="_blank">Book on WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">🍊</div>
-      <h3>VL CC</h3>
-      <p>✨ Vitamin C Glow – Natural Radiance</p>
-      <p class="price">₹450</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Massage%20book%20karna%20chahta/chahti%20hoon%20-₹700" target="_blank">Book on WhatsApp</a>
-    </div>
-    <div class="card">
-      <div class="icon">🍷</div>
-      <h3>Wine Facial</h3>
-      <p>🍷 Wine Facial – Relax & Rejuvenate</p>
-      <p class="price">₹300</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Massage%20book%20karna%20chahta/chahti%20hoon%20-₹700" target="_blank">Book on WhatsApp</a>
-    </div>
-
+<div class="body-grid">
+  <div class="card">
+    <div class="icon">🧖‍♀️</div>
+    <h3>Hydraa Facial</h3>
+    <p>Soft aur clean skin ke liye professional Facial service.</p>
+    <p class="price">₹999</p>
+    <button class="cart-btn" onclick="addToCart('Hydraa Facial', 999)">Add to Cart</button>
   </div>
+
+  <div class="card">
+    <div class="icon">🧖‍♀️</div>
+    <h3>Fruit Facial</h3>
+    <p>Soft aur clean skin ke liye professional Facial service.</p>
+    <p class="price">₹200</p>
+    <button class="cart-btn" onclick="addToCart('Fruit Facial', 200)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <div class="icon">🧖‍♀️</div>
+    <h3>Gold Facial</h3>
+    <p>✨ Gold Glow Facial – Chamakte Chehre ke liye.</p>
+    <p class="price">₹250</p>
+    <button class="cart-btn" onclick="addToCart('Gold Facial', 250)">Add to Cart</button>
+  </div>
+
+  <div class="card">
+    <div class="icon">💎</div>
+    <h3>Diamond Facial</h3>
+    <p>💎 Diamond Glow Facial – Sparkle Your Skin</p>
+    <p class="price">₹350</p>
+    <button class="cart-btn" onclick="addToCart('Diamond Facial', 350)">Add to Cart</button>
+  </div>
+  <div class="card"> <div class="icon">🌸</div> <h3>Skin Polishing</h3> <p>🌸 Skin Polishing Facial – Smooth & Soft Skin.</p> <p class="price">₹250</p> 
+  <button class="cart-btn" onclick="addToCart('Skin polishing', 250)">Add to Cart</button>
+</div>
+<div class="card"> <div class="icon">👰</div> <h3>Bridal Glow</h3> <p>👰 Bridal Glow Facial – Shaadi ke Liye Perfect</p> <p class="price">₹600</p> 
+ <button class="cart-btn" onclick="addToCart('Bridal glow facial', 600)">Add to Cart</button></div>
+ <div class="card"> <div class="icon">🍊</div> <h3>VL CC</h3> <p>✨ Vitamin C Glow – Natural Radiance</p> <p class="price">₹450</p><button class="cart-btn" onclick="addToCart('Vl cc', 450)">Add to Cart</button>  </div>
+ <div class="card"> <div class="icon">🍷</div> <h3>Wine Facial</h3> <p>🍷 Wine Facial – Relax & Rejuvenate</p> <p class="price">₹300</p>
+ <button class="cart-btn" onclick="addToCart('wine', 300)">Add to Cart</button> </div></div>
+
+<!-- Cart Box -->
+<div id="cartBox">
+<h3>🛒 Your Cart</h3>
+<div id="cartItems"></div>
+<p><strong>Total: ₹<span id="totalAmount">0</span></strong></p>
+<button class="checkout" onclick="checkout()">Checkout</button>
+</div>
+
+<!-- Cart Page Modal -->
+<div id="cartPage">
+<div class="modal-content">
+<h2 style="text-align:center; color:#d6007f;">🧾 Booking Details</h2>
+<div id="cartSummary" style="margin-bottom:15px; font-size:16px; line-height:1.6;"></div>
+
+<h3 style="color:#ff4fa3; margin-top:20px;">Fill Your Details</h3>
+<input id="nameInput" type="text" placeholder="Your Name">
+<input id="phoneInput" type="text" placeholder="Phone Number">
+<input id="dateInput" type="date">
+<input id="timeInput" type="time">
+<button class="confirm" onclick="confirmBooking()">Confirm Booking</button>
+<button class="close" onclick="closeCartPage()">Close</button>
+</div>
 </div>
 
 <footer>
-  © 2025 Radha Rani Parlour & Stretching Studio — Body Care with Love 💗
+© 2025 Radha Rani Parlour & Stretching Studio — Facial with Love 💗
 </footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(name, price){
+  const existing = cart.find(item => item.name===name);
+  if(existing) existing.qty++;
+  else cart.push({name, price, qty:1});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCart();
+  alert(name + " added to cart!");
+}
+
+function updateCart(){
+  const cartBox = document.getElementById('cartBox');
+  const cartItems = document.getElementById('cartItems');
+  const totalAmount = document.getElementById('totalAmount');
+  if(cart.length === 0){ cartBox.style.display='none'; return;}
+  cartBox.style.display='block';
+  cartItems.innerHTML='';
+  let total=0;
+  cart.forEach((item,index)=>{
+    const div=document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML=`${item.name} — ₹${item.price} × ${item.qty} <button style="float:right;background:red;color:white;border:none;padding:2px 6px;border-radius:5px;cursor:pointer;" onclick="removeItem(${index})">X</button>`;
+    cartItems.appendChild(div);
+    total += item.price * item.qty;
+  });
+  totalAmount.innerText=total;
+}
+
+function removeItem(index){ cart.splice(index,1); localStorage.setItem("cart",JSON.stringify(cart)); updateCart(); }
+
+function checkout(){
+  const cartPage = document.getElementById('cartPage');
+  const summaryBox = document.getElementById('cartSummary');
+  let summaryHTML='';
+  let total=0;
+  cart.forEach(item => {summaryHTML += `${item.name} × ${item.qty} = ₹${item.price*item.qty}<br>`; total+=item.price*item.qty;});
+  summaryHTML += `<br><strong>Total: ₹${total}</strong>`;
+  summaryBox.innerHTML=summaryHTML;
+  cartPage.style.display='block';
+}
+
+function closeCartPage(){document.getElementById('cartPage').style.display='none';}
+
+function confirmBooking(){
+  const name = document.getElementById('nameInput').value.trim();
+  const phone = document.getElementById('phoneInput').value.trim();
+  const date = document.getElementById('dateInput').value;
+  const time = document.getElementById('timeInput').value;
+
+  if(!name || !phone || !date || !time){alert('Please fill all details!'); return;}
+
+  let summary='';
+  let total=0;
+  cart.forEach(item => {summary += `${item.name} × ${item.qty} = ₹${item.price*item.qty}\n`; total+=item.price*item.qty;});
+
+  let message=`New Booking Request:%0A%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ATime: ${time}%0A%0A— Services —%0A${summary}%0ATotal: ₹${total}%0A%0APlease confirm my appointment.`;
+  const salonNumber = "+919993658088"; 
+  window.open(`https://wa.me/${salonNumber}?text=${message}`,'_blank');
+
+  alert('Booking Confirmed! We will contact you soon.');
+  cart=[]; localStorage.removeItem("cart");
+  updateCart(); closeCartPage();
+}
+
+updateCart();
+</script>
 
 </body>
 </html>

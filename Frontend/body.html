@@ -92,19 +92,41 @@
     margin-bottom: 10px;
   }
 
-  .whatsapp-btn {
+  .cart-btn {
     display: inline-block;
     padding: 10px 15px;
-    background: #25D366;
+    background: #ff4fa3;
     color: white;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
     transition: 0.3s;
   }
 
-  .whatsapp-btn:hover {
+  .cart-btn:hover {
     transform: scale(1.05);
+    background: #d6007f;
+  }
+
+  /* Floating View Cart Button */
+  #viewCartBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    padding: 12px 22px;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: 0.3s;
+    display: none;
+  }
+
+  #viewCartBtn:hover {
     background: #1ebe57;
   }
 
@@ -131,28 +153,12 @@
 
   <div class="body-grid">
 
-    <!-- <div class="card">
-      <div class="icon">🧖‍♀️</div> -->
-      <!-- <h3>Waxing</h3>
-      <p>Soft aur smooth skin ke liye professional waxing service.</p>
-      <p class="price">₹300+</p>
-      <a class="whatsapp-btn" href="https://wa.me/9993658088?text=Hi!%20Main%20Waxing%20book%20karna%20chahta/chahti%20hoon%20-₹300+" target="_blank">Book on WhatsApp</a>
-    </div>
-
-    <div class="card">
-      <div class="icon">🧵</div>
-      <h3>Threading</h3>
-      <p>Eyebrow aur facial threading — Clean aur sharp look ke liye.</p>
-      <p class="price">₹150+</p>
-      <a class="whatsapp-btn" href="https://wa.me/9993658088?text=Hi!%20Main%20Threading%20book%20karna%20chahta/chahti%20hoon%20-₹150+" target="_blank">Book on WhatsApp</a>
-    </div> -->
-
     <div class="card">
       <div class="icon">💅</div>
       <h3>Manicure</h3>
       <p>Perfect aur healthy nails — Stylish hand care.</p>
       <p class="price">₹250</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Manicure%20book%20karna%20chahta/chahti%20hoon%20-₹350" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Manicure', 250)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -160,7 +166,7 @@
       <h3>Pedicure</h3>
       <p>Relax aur groomed feet — Smooth aur soft look ke liye.</p>
       <p class="price">₹250</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Pedicure%20book%20karna%20chahta/chahti%20hoon%20-₹400" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Pedicure', 250)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -168,7 +174,7 @@
       <h3>Body Scrub</h3>
       <p>Dead skin removal aur soft glowing skin ke liye.</p>
       <p class="price">₹500</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Scrub%20book%20karna%20chahta/chahti%20hoon%20-₹500" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Body Scrub', 500)">Add to Cart</button>
     </div>
 
     <div class="card">
@@ -176,15 +182,35 @@
       <h3>Body Massage</h3>
       <p>Relax aur pain relief — Full body massage.</p>
       <p class="price">₹700</p>
-      <a class="whatsapp-btn" href="https://wa.me/+919993658088?text=Hi!%20Main%20Body%20Massage%20book%20karna%20chahta/chahti%20hoon%20-₹700" target="_blank">Book on WhatsApp</a>
+      <button class="cart-btn" onclick="addToCart('Body Massage', 700)">Add to Cart</button>
     </div>
 
   </div>
 </div>
 
+<!-- Floating View Cart Button -->
+<a id="viewCartBtn" href="cart.html">🛒 View Cart</a>
+
 <footer>
   © 2025 Radha Rani Parlour & Stretching Studio — Body Care with Love 💗
 </footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(name, price) {
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  document.getElementById("viewCartBtn").style.display = "block";
+}
+</script>
 
 </body>
 </html>
