@@ -5,78 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cart - Radha Rani Parlour</title>
 <style>
-  body{
-    margin:0;
-    font-family:Poppins, sans-serif;
-    background:#fff4fa;
+  /* GENERAL STYLES */
+  body {
+    margin: 0;
+    font-family: Poppins, sans-serif;
+    background: #fff4fa;
+    color: #333;
   }
-  header{
-    background:#ff5fad;
-    padding:20px;
-    text-align:center;
-    color:white;
-    font-size:24px;
-    font-weight:600;
-    position:relative;
+
+  header {
+    background: #ff5fad;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    position: relative;
   }
+
+  /* View Cart button top-right */
   .view-cart-btn {
-    position:absolute;
-    top:20px;
-    right:20px;
-    background:#fff;
-    color:#ff4fa3;
-    padding:10px 15px;
-    border-radius:25px;
-    font-weight:600;
-    text-decoration:none;
-    transition:0.3s;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    color: #ff4fa3;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
   }
-  .view-cart-btn:hover { background:#ffe1f1; }
-  .container{
-    max-width:500px;
-    margin:auto;
-    background:white;
-    margin-top:30px;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  .view-cart-btn:hover { background: #ffe1f1; }
+
+  a.back-link {
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    color: #d6007f;
+    font-weight: 600;
+    text-decoration: none;
   }
-  h2{
-    color:#d6007f;
-    text-align:center;
+
+  .container {
+    max-width: 500px;
+    margin: 20px auto 50px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
-  .item{
-    padding:10px 0;
-    border-bottom:1px solid #ffe2ef;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:16px;
+
+  h2 {
+    color: #d6007f;
+    text-align: center;
+    margin-bottom: 20px;
   }
-  .total{
-    text-align:right;
-    margin-top:15px;
-    font-size:18px;
-    font-weight:700;
-    color:#ff4fa3;
+
+  .item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ffe2ef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    flex-wrap: wrap;
   }
-  input{
-    width:100%; padding:12px; border:1px solid #ccc; border-radius:10px; margin-bottom:10px;
+
+  .item span {
+    margin: 5px 0;
   }
-  button{
-    width:100%; padding:12px; border:none; border-radius:25px; background:#25d366; color:white; font-size:16px; font-weight:600; cursor:pointer;
+
+  .total {
+    text-align: right;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff4fa3;
   }
-  button:hover{ background:#1bbd58; }
-  .remove-btn{
-    padding:5px 10px;
-    background:#ff4fa3;
-    color:white;
-    border:none;
-    border-radius:15px;
-    cursor:pointer;
-    font-size:14px;
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
   }
-  .remove-btn:hover{ background:#d6007f; }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: #25d366;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover { background: #1bbd58; }
+
+  .remove-btn {
+    padding: 5px 10px;
+    background: #ff4fa3;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  .remove-btn:hover { background: #d6007f; }
+
+  /* RESPONSIVE */
+  @media(max-width: 600px){
+    header {
+      font-size: 20px;
+      padding: 15px;
+    }
+    .view-cart-btn {
+      padding: 8px 12px;
+      font-size: 14px;
+      top: 15px;
+      right: 15px;
+    }
+    .container {
+      margin: 15px;
+      padding: 15px;
+    }
+    h2 {
+      font-size: 24px;
+    }
+    input, button {
+      font-size: 14px;
+      padding: 10px;
+    }
+    .item {
+      font-size: 14px;
+    }
+    .remove-btn {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+    .total {
+      font-size: 16px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -86,7 +162,7 @@
   <a href="/cart.html" class="view-cart-btn">View Cart</a>
 </header>
 
-<a href="/index.html" style="display:block; text-align:center; margin-top:10px; color:#d6007f; font-weight:600; text-decoration:none;">← Back to Main</a>
+<a href="/index.html" class="back-link">← Back to Main</a>
 
 <div class="container">
   <h2>Order Summary</h2>
@@ -94,8 +170,8 @@
   <p class="total">Total: ₹<span id="totalPrice">0</span></p>
 
   <h2>Fill Your Details</h2>
-  <input type="date" id="date">
-  <input type="time" id="time">
+  <input type="date" id="date" placeholder="Date">
+  <input type="time" id="time" placeholder="Time">
   <input type="text" id="name" placeholder="Your Name">
   <input type="text" id="phone" placeholder="Phone Number">
   <button id="confirmBtn" onclick="confirmBooking()">Confirm Booking</button>
